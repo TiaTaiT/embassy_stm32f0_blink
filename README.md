@@ -2,7 +2,7 @@
 
 An asynchronous Rust "Blinky" example for the **STM32F0** series microcontrollers using the [Embassy framework](https://embassy.dev/).
 
-Existing examples for the STM32F0 series are often outdated or use legacy HALs. This project provides a clean template using current best practices (as of 2025), including `probe-rs`, `defmt` logging, and the Embassy async executor.
+Existing examples for the STM32F0 series are often outdated or use legacy HALs. This project provides a clean template using current best practices (as of 2026), including `probe-rs`, `defmt` logging, and the Embassy async executor.
 
 ## 🚀 Features
 - **Async/Await**: Uses `embassy-executor` for non-blocking task management.
@@ -65,7 +65,6 @@ You can flash and run the application directly using `cargo run`. This will comp
 ## 📂 Project Structure
 
 - **`.cargo/config.toml`**: Configures the `probe-rs` runner and necessary linker flags (`link.x` and `defmt.x`).
-- **`memory.x`**: Defines the Flash and RAM layout specifically for the STM32F051R8.
 - **`src/main.rs`**: 
     - Initializes the Embassy HAL.
     - Defines an async `blink_task` that uses a `Peri<AnyPin>` type, allowing the same code to drive any GPIO pin.
@@ -75,8 +74,9 @@ You can flash and run the application directly using `cargo run`. This will comp
 
 ### Changing the MCU
 If you are using a different STM32F0 chip:
-1. Update the `memory.x` file with your chip's Flash and RAM boundaries.
-2. Update the `embassy-stm32` feature in `Cargo.toml` (e.g., change `stm32f051r8` to `stm32f030f4`).
+
+1. `embassy-stm32` already enables the `memory-x` feature, which automatically selects a memory map. You can add a `memory.x` file if your chip is not supported by the automatic memory mapping selection.
+2. Update the `embassy-stm32` feature in `Cargo.toml` (for example, change `stm32f051r8` to `stm32f030f4`).
 3. Update the `--chip` flag in `.cargo/config.toml`.
 
 ### Changing Blink Rates
