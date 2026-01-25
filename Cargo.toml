@@ -3,7 +3,7 @@
 name = "embassy_stm32f0_blink"
 version = "0.1.0"
 edition = "2024"
-rust-version = "1.92.0"
+rust-version = "1.93.0"
 
 [package.metadata.probe-rs]
 minimum-version = "0.30.0"
