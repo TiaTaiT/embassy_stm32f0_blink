@@ -28,10 +28,10 @@ async fn main(spawner: Spawner) {
     info!("Main started!");
 
     // Blue LED (PC8)
-    spawner.spawn(blink_task(p.PC8.into(), 500)).unwrap();
+    spawner.spawn(blink_task(p.PC8.into(), 500).unwrap());
 
     // Green LED (PC9)
-    spawner.spawn(blink_task(p.PC9.into(), 200)).unwrap();
+    spawner.spawn(blink_task(p.PC9.into(), 200).unwrap());
 
     loop {
         Timer::after_secs(10).await;
